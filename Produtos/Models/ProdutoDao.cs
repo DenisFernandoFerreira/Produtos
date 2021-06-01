@@ -20,7 +20,7 @@ namespace Produtos.Models
             conn.Open();
         }
 
-        public Produto Cadastrar(Produto produto)
+        public ProdutosD Cadastrar(ProdutosD produto)
         {
             command = new NpgsqlCommand("SELECT * FROM public.FUNCT_INSERIR_PRODUTO('" + produto.PROD_TX_NOME + "', '" + produto.PROD_TX_DESCRICAO + "', " + produto.PROD_VL_VALOR.ToString().Replace(",", ".") + ")", conn);
 
@@ -36,16 +36,16 @@ namespace Produtos.Models
             return produto;
         }
 
-        public void Editar(Produto produto)
+        public void Editar(ProdutosD produto)
         {
             command = new NpgsqlCommand("CALL public.pr_alterar_produto(" + produto.ID_PRODUTO + ", '" + produto.PROD_TX_NOME + "', '" + produto.PROD_TX_DESCRICAO + "', " + produto.PROD_VL_VALOR.ToString().Replace(",", ".") + ")", conn);
             command.ExecuteScalar();
             conn.Close();
         }
 
-        public List<Produto> Listar()
+        public List<ProdutosD> Listar()
         {
-            List<Produto> list = new List<Produto>();
+            List<ProdutosD> list = new List<ProdutosD>();
 
             command = new NpgsqlCommand("SELECT * FROM FUNCT_LISTAR_PRODUTO()", conn);
 
@@ -67,9 +67,9 @@ namespace Produtos.Models
             return list;
         }
 
-        public Produto Listar(int id)
+        public ProdutosD Listar(int id)
         {
-            Produto obj = new Produto();
+            ProdutosD obj = new ProdutosD();
 
             command = new NpgsqlCommand("SELECT * FROM funct_listar_produto_id(" + id + ")", conn);
 
@@ -98,9 +98,9 @@ namespace Produtos.Models
             conn.Close();
         }
 
-        public Produto GetObjeto(NpgsqlDataReader reader)
+        public ProdutosD GetObjeto(NpgsqlDataReader reader)
         {
-            Produto obj = new Produto();
+            ProdutosD obj = new ProdutosD();
 
             obj.ID_PRODUTO = int.Parse(reader["ID_PRODUTO"].ToString());
 

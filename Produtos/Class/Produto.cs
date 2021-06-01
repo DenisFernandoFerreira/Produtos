@@ -7,9 +7,9 @@ namespace Produtos.Class
 {
     public class Produto
     {
-        public int ID_PRODUTO { get; set; }
-        public string PROD_TX_NOME { get; set; }
-        public string PROD_TX_DESCRICAO { get; set; }
-        public decimal PROD_VL_VALOR { get; set; }
+        public string produto { get; set; }
+        public double valor { get; set; }
+        public string imagem { get; set; }
+        public List<string> eans { get; set; }
     }
 }
